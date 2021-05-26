@@ -1,7 +1,8 @@
 {
   "name": "@shubham20info/storybook-ts",
-  "version": "0.1.0",
+  "version": "1.1.2",
   "private": false,
+  "main": "dist/index.js",
   "files": [
     "dist",
     "README.md"
@@ -29,7 +30,9 @@
   },
   "scripts": {
     "storybook": "start-storybook -p 6006 -s public",
-    "build": "build-storybook -s public -o ./dist",
+    "build-old": "build-storybook -s public -o ./dist",
+    "clean": "rimraf dist",
+    "build": "npm run clean && babel src/components --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,stories.js,__snapshots__",
     "publish": "npm publish --access=public"
   },
   "eslintConfig": {
@@ -61,11 +64,15 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
+    "@babel/preset-react": "^7.13.13",
     "@storybook/addon-actions": "^6.2.9",
     "@storybook/addon-essentials": "^6.2.9",
     "@storybook/addon-links": "^6.2.9",
     "@storybook/node-logger": "^6.2.9",
     "@storybook/preset-create-react-app": "^3.1.7",
-    "@storybook/react": "^6.2.9"
+    "@storybook/react": "^6.2.9",
+    "cross-env": "^7.0.3"
   }
 }
